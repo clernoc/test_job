@@ -317,6 +317,8 @@ class test_archive extends CModule
             
             $step = IntVal($step);
             
+			CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/". $this->MODULE_ID ."/install/components", $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
+			
             if ($step < 2) {
                 
                 $APPLICATION->IncludeAdminFile("Установка модуля {$this->MODULE_ID}", $DOCUMENT_ROOT . "/bitrix/modules/{$this->MODULE_ID}/install/step1.php");
@@ -354,6 +356,8 @@ class test_archive extends CModule
         
         $ib = new \CIBlockElement();
         
+		DeleteDirFilesEx("/bitrix/components/test/test_time");
+		
         if (\CIBlockType::GetByID($code)->Fetch()) {
             
             $result = \Bitrix\Iblock\IblockTable::getList(array(
